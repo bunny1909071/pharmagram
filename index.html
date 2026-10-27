@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pharmgram</title>
+<style>
+:root{--bg:#fff;--fg:#000;--mut:#737373;--line:#dbdbdb;--blue:#0095f6;--red:#ed4956;--chip:#efefef}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--fg:#f5f5f5;--mut:#a8a8a8;--line:#262626;--chip:#262626}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font:14px/1.4 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+#app{max-width:470px;margin:0 auto;height:100%;display:flex;flex-direction:column;border-inline:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+header{padding:10px 14px;border-bottom:1px solid var(--line)}
+.logo{font:italic 700 26px/1 "Brush Script MT","Segoe Script",cursive}
+main{flex:1;overflow-y:auto}
+svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;cursor:pointer}
+svg.on{fill:var(--red);stroke:var(--red)}svg.sv.on{fill:var(--fg);stroke:var(--fg)}
+.stories{display:flex;gap:12px;padding:12px 14px;overflow-x:auto;border-bottom:1px solid var(--line)}
+.st{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;min-width:68px;cursor:pointer}
+.st.dim{opacity:.45}
+.ring{width:66px;height:66px;border-radius:50%;padding:3px;background:conic-gradient(#feda75,#d62976,#962fbf,#feda75)}
+.ring i{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;border:3px solid var(--bg);font-style:normal;font-size:22px;color:#fff}
+.ph{display:flex;align-items:center;gap:10px;padding:10px 14px}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:16px;flex:none}
+.ph b{display:block}.ph small{color:var(--mut)}
+.tag{font-size:11px;background:var(--chip);padding:2px 6px;border-radius:6px;color:var(--mut);margin-left:auto}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;aspect-ratio:1/1}
+.slide{flex:0 0 100%;scroll-snap-align:start;padding:28px;display:flex;flex-direction:column;justify-content:center;color:#fff;gap:10px}
+.slide h2{margin:0;font-size:26px;line-height:1.15}.slide p{margin:0;font-size:17px}
+.dots{display:flex;justify-content:center;gap:5px;padding-top:8px}.dots span{width:6px;height:6px;border-radius:50%;background:var(--line)}.dots span.a{background:var(--blue)}
+.act{display:flex;gap:16px;padding:10px 14px 4px}.act .sp{flex:1}
+.cap{padding:0 14px 14px}.cap .m{color:var(--mut);display:block;margin-top:4px}
+article{border-bottom:1px solid var(--line)}
+.quiz{padding:18px 14px;display:grid;gap:8px;background:var(--chip)}
+.quiz button{font:inherit;color:inherit;text-align:left;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);cursor:pointer}
+.quiz button.ok{background:#1f9d55;color:#fff;border-color:#1f9d55}.quiz button.no{background:var(--red);color:#fff;border-color:var(--red)}
+.quiz .q{font-weight:600;font-size:17px;margin-bottom:4px}.quiz .ex{display:none;color:var(--mut)}
+.flip{aspect-ratio:1/1;cursor:pointer}
+.flip div{width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:32px;color:#fff;font-size:20px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.grid div{aspect-ratio:1/1;display:grid;place-items:center;color:#fff;font-weight:600;text-align:center;padding:6px;font-size:13px;cursor:pointer}
+.grid div i{display:block;font-style:normal;font-size:26px}
+.reels{height:100%;overflow-y:auto;scroll-snap-type:y mandatory}
+.reel{height:100%;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px 40px;color:#fff;gap:8px;position:relative}
+.reel h2{margin:0;font-size:28px;line-height:1.15}.reel p{margin:0;font-size:17px}
+.side{position:absolute;right:14px;bottom:110px;display:flex;flex-direction:column;gap:18px}
+.prof{display:flex;align-items:center;gap:20px;padding:16px 14px}.prof .av{width:76px;height:76px;font-size:32px}
+.stats{display:flex;gap:18px;text-align:center}.stats b{display:block;font-size:17px}
+.sec{padding:8px 14px;font-weight:600;border-top:1px solid var(--line)}
+.form{display:grid;gap:10px;padding:14px}
+.form input,.form select,.sbox{font:inherit;color:inherit;background:var(--chip);border:0;border-radius:10px;padding:12px;width:100%}
+.sbox{width:calc(100% - 28px);margin:10px 14px}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:12px 16px;font:600 14px inherit;cursor:pointer}.btn[disabled]{opacity:.5}
+.empty{padding:18px 14px;color:var(--mut)}.err{color:var(--red)}
+nav{display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid var(--line);background:var(--bg)}
+nav svg.cur{stroke-width:3}
+#sheet{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:9}
+#sheet[hidden]{display:none}
+.box{background:var(--bg);width:100%;max-width:470px;height:75%;border-radius:16px 16px 0 0;display:flex;flex-direction:column}
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.b{max-width:85%;padding:8px 12px;border-radius:16px;background:var(--chip);white-space:pre-wrap}.b.me{align-self:flex-end;background:var(--blue);color:#fff}
+.row{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}.row input{flex:1;font:inherit;color:inherit;background:var(--chip);border:0;border-radius:10px;padding:10px}
+</style>
+</head>
+<body>
+<div id="app"><header><span class="logo">Pharmgram</span></header><main id="main"></main><nav id="nav"></nav></div>
+<div id="sheet" hidden></div>
+<script>
+const COL={Pharmacology:'#d62976',Pharmaceutics:'#0b7a75',Pathology:'#5b51d8','Clinical Pharmacy':'#e8590c','Medicinal Chemistry':'#1c7ed6',Pharmacognosy:'#2f9e44'};
+const ICON={Pharmacology:'💊',Pharmaceutics:'🧪',Pathology:'🔬','Clinical Pharmacy':'🩺','Medicinal Chemistry':'⚗️',Pharmacognosy:'🌿'};
+const SUBJ=Object.keys(COL);
+const P={home:'<path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/>',search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/>',plus:'<rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/>',reel:'<rect x="3" y="3" width="18" height="18" rx="5"/><path d="M3 9h18M9 3l3 6M15 3l3 6"/><path d="M10 12l5 3-5 3z"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',heart:'<path d="M12 21s-8-5.5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 5.5-8 11-8 11z"/>',chat:'<path d="M21 12a8 8 0 01-11.5 7.2L3 21l1.8-6A8 8 0 1121 12z"/>',save:'<path d="M6 3h12v18l-6-5-6 5z"/>'};
+const I=(n,c='',x='')=>`<svg viewBox="0 0 24 24" class="${c}" ${x}>${P[n]}</svg>`;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let S={};try{S=JSON.parse(localStorage.getItem('pg'))||{}}catch(e){}
+S.liked=S.liked||{};S.saved=S.saved||{};S.gen=S.gen||[];S.quiz=S.quiz||{};S.days=S.days||[];
+const save=()=>{try{localStorage.setItem('pg',JSON.stringify(S))}catch(e){}};
+const iso=d=>d.toISOString().slice(0,10);
+function touch(){const d=iso(new Date());if(!S.days.includes(d)){S.days.push(d);save()}}
+function streak(){let d=new Date();if(!S.days.includes(iso(d)))d.setDate(d.getDate()-1);let n=0;while(S.days.includes(iso(d))){n++;d.setDate(d.getDate()-1)}return n}
+
+let C=[],tab='home',filter=null,query='',chat=null;
+const all=()=>[...S.gen,...C];
+const find=id=>all().find(p=>p.id===id);
+const txt=p=>p.type==='notes'?p.title+'. '+p.slides.map(s=>s.h+': '+s.p).join(' '):p.type==='quiz'?p.q+' Options: '+p.o.join(', ')+'. '+p.ex:p.type==='flash'?p.front+' - '+p.back:p.title+'. '+p.p;
+
+function acts(p){return `<div class="act">${I('heart',S.liked[p.id]?'on':'',`data-l="${p.id}"`)}${I('chat','',`data-t="${p.id}"`)}<span class="sp"></span>${I('save',(S.saved[p.id]?'on ':'')+'sv',`data-s="${p.id}"`)}</div>`}
+function post(p){
+ const head=`<div class="ph"><div class="av" style="background:${COL[p.subject]}">${ICON[p.subject]}</div><div><b>${esc(p.subject)}</b><small>${p.type==='quiz'?'Quiz':p.type==='flash'?'Flashcard':'Notes'}</small></div>${p.ai?'<span class="tag">AI-generated, verify</span>':''}</div>`;
+ let b='';
+ if(p.type==='notes')b=`<div class="slides">${p.slides.map(s=>`<div class="slide" style="background:${COL[p.subject]}"><h2>${esc(s.h)}</h2><p>${esc(s.p)}</p></div>`).join('')}</div><div class="dots">${p.slides.map((_,k)=>`<span class="${k?'':'a'}"></span>`).join('')}</div>${acts(p)}<div class="cap"><b>${esc(p.title)}</b></div>`;
+ if(p.type==='quiz'){const d=S.quiz[p.id];b=`<div class="quiz" data-q="${p.id}"><div class="q">${esc(p.q)}</div>${p.o.map((o,k)=>`<button data-a="${k}" class="${d===undefined?'':k===p.a?'ok':k===d?'no':''}">${esc(o)}</button>`).join('')}<div class="ex" ${d===undefined?'':'style="display:block"'}>${esc(p.ex)}</div></div>${acts(p)}`}
+ if(p.type==='flash')b=`<div class="flip" data-f="${p.id}"><div style="background:${COL[p.subject]}">${esc(p.front)}</div></div>${acts(p)}<div class="cap"><span class="m" style="color:var(--mut)">Tap the card to flip it.</span></div>`;
+ return `<article>${head}${b}</article>`}
+const feed=l=>l.length?l.map(post).join(''):'<div class="empty">Nothing here yet. Tap + to create a post with AI.</div>';
+function stories(){return `<div class="stories"><div class="st ${filter?'dim':''}" data-sub=""><div class="ring"><i style="background:#262626">✨</i></div>All</div>${SUBJ.map(s=>`<div class="st ${filter&&filter!==s?'dim':''}" data-sub="${s}"><div class="ring"><i style="background:${COL[s]}">${ICON[s]}</i></div>${s.split(' ')[0]}</div>`).join('')}</div>`}
+function results(){const q=query.trim().toLowerCase();return feed(all().filter(p=>p.type!=='fact'&&txt(p).toLowerCase().includes(q)))}
+
+function render(){
+ const m=document.getElementById('main');let h='';
+ if(tab==='home')h=stories()+(filter?`<div class="empty">Showing ${esc(filter)}</div>`:'')+feed(all().filter(p=>p.type!=='fact'&&(!filter||p.subject===filter)));
+ if(tab==='search')h=`<input class="sbox" id="q" placeholder="Search topics, drugs, exams" value="${esc(query)}"><div id="res">${query.trim()?results():`<div class="grid">${SUBJ.map(s=>`<div data-sub="${s}" style="background:${COL[s]}"><span><i>${ICON[s]}</i>${s}</span></div>`).join('')}</div>`}</div>`;
+ if(tab==='plus')h=`<div class="form"><b>Create a study post with AI</b><select id="gs">${SUBJ.map(s=>`<option>${s}</option>`).join('')}</select><input id="gt" maxlength="80" placeholder="Topic, e.g. Warfarin interactions"><select id="gk"><option value="notes">Notes carousel</option><option value="quiz">Quiz question</option><option value="flash">Flashcard</option><option value="fact">Quick fact (Reels)</option></select><button class="btn" id="go">Generate</button><div id="gst"></div><small style="color:var(--mut)">AI-generated content can contain mistakes. Check it against your textbook.</small></div>`;
+ if(tab==='reel'){const f=all().filter(p=>p.type==='fact');h=f.length?`<div class="reels">${f.map(p=>`<div class="reel" style="background:${COL[p.subject]}"><div class="side">${I('heart',S.liked[p.id]?'on':'',`data-l="${p.id}"`)}${I('chat','',`data-t="${p.id}"`)}${I('save',(S.saved[p.id]?'on ':'')+'sv',`data-s="${p.id}"`)}</div><b>${ICON[p.subject]} ${esc(p.subject)}</b><h2>${esc(p.title)}</h2><p>${esc(p.p)}</p></div>`).join('')}</div>`:'<div class="empty">No quick facts yet.</div>'}
+ if(tab==='user'){const ids=Object.keys(S.quiz),ok=ids.filter(i=>find(i)&&find(i).a===S.quiz[i]).length,sv=all().filter(p=>S.saved[p.id]);
+  h=`<div class="prof"><div class="av" style="background:#d62976">📚</div><div class="stats"><div><b>${streak()}</b>day streak</div><div><b>${ids.length}</b>quizzes</div><div><b>${ids.length?Math.round(ok/ids.length*100):0}%</b>correct</div><div><b>${sv.length}</b>saved</div></div></div><div class="sec">Saved</div>${sv.length?sv.map(p=>p.type==='fact'?`<article><div class="ph"><div class="av" style="background:${COL[p.subject]}">${ICON[p.subject]}</div><div><b>${esc(p.title)}</b><small>${esc(p.p)}</small></div></div></article>`:post(p)).join(''):'<div class="empty">Tap the bookmark on any post to save it here.</div>'}`}
+ m.innerHTML=h;m.style.overflow=tab==='reel'?'hidden':'auto';
+ document.getElementById('nav').innerHTML=['home','search','plus','reel','user'].map(n=>I(n,tab===n?'cur':'',`data-n="${n}"`)).join('')}
+
+async function api(path,body){const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(typeof j.detail==='string'?j.detail:'Request failed. Check your input.');return j}
+
+function sheet(){const s=document.getElementById('sheet');if(!chat){s.hidden=true;return}s.hidden=false;
+ s.innerHTML=`<div class="box"><div class="ph"><b style="flex:1">Ask the AI tutor</b><span data-x style="cursor:pointer;font-size:20px">✕</span></div><div class="msgs" id="msgs">${chat.msgs.length?'':'<div class="empty">Ask anything about this post.</div>'}${chat.msgs.map(m=>`<div class="b ${m.role==='user'?'me':''}">${esc(m.content)}</div>`).join('')}${chat.busy?'<div class="b">Thinking…</div>':''}</div><div class="row"><input id="ci" placeholder="Ask a question…" maxlength="500"><button class="btn" data-send>Send</button></div></div>`;
+ const m=document.getElementById('msgs');m.scrollTop=m.scrollHeight}
+async function send(){const c=chat,i=document.getElementById('ci'),v=i.value.trim();if(!v||c.busy)return;c.msgs.push({role:'user',content:v});c.busy=true;sheet();touch();
+ let h=c.msgs.slice(-9);while(h.length&&h[0].role!=='user')h.shift();
+ try{const j=await api('/api/tutor',{context:c.ctx,messages:h});c.msgs.push({role:'assistant',content:j.reply})}catch(e){c.msgs.push({role:'assistant',content:'Sorry: '+e.message})}
+ c.busy=false;if(chat===c)sheet()}
+
+document.addEventListener('click',async e=>{
+ const t=e.target.closest('[data-n],[data-sub],[data-l],[data-s],[data-t],[data-a],[data-f],[data-x],[data-send],#go');if(!t)return;const d=t.dataset;
+ if(d.n){tab=d.n;render();document.getElementById('main').scrollTop=0;return}
+ if(d.sub!==undefined){filter=d.sub||null;tab='home';render();return}
+ if(d.l){S.liked[d.l]=!S.liked[d.l];save();t.classList.toggle('on');return}
+ if(d.s){S.saved[d.s]=!S.saved[d.s];save();t.classList.toggle('on');return}
+ if(d.t){chat={ctx:txt(find(d.t)),msgs:[]};sheet();return}
+ if(d.x!==undefined){chat=null;sheet();return}
+ if(d.send!==undefined){send();return}
+ if(d.a!==undefined){const id=t.closest('.quiz').dataset.q;if(S.quiz[id]!==undefined)return;S.quiz[id]=+d.a;save();touch();const y=document.getElementById('main').scrollTop;render();document.getElementById('main').scrollTop=y;return}
+ if(d.f){const p=find(d.f),x=t.firstElementChild,on=x.dataset.b;x.dataset.b=on?'':1;x.textContent=on?p.front:p.back;x.style.background=on?COL[p.subject]:'#1d1d1f';return}
+ if(t.id==='go'){const topic=document.getElementById('gt').value.trim(),st=document.getElementById('gst');if(topic.length<2){st.className='empty err';st.textContent='Enter a topic first.';return}
+  const subject=document.getElementById('gs').value,kind=document.getElementById('gk').value;t.disabled=true;st.className='empty';st.textContent='Generating…';
+  try{const j=await api('/api/generate',{subject,topic,kind});S.gen.unshift({id:'g'+Date.now(),subject,type:kind,ai:true,...j});save();touch();filter=null;tab=kind==='fact'?'reel':'home';render()}
+  catch(err){t.disabled=false;st.className='empty err';st.textContent=err.message}}
+});
+document.addEventListener('input',e=>{if(e.target.id==='q'){query=e.target.value;document.getElementById('res').innerHTML=query.trim()?results():''}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='ci')send()});
+document.addEventListener('scroll',e=>{const s=e.target;if(s.classList&&s.classList.contains('slides')){const k=Math.round(s.scrollLeft/s.clientWidth);s.closest('article').querySelectorAll('.dots span').forEach((x,j)=>x.className=j===k?'a':'')}},true);
+
+touch();
+fetch('/content.json').then(r=>r.json()).catch(()=>[]).then(c=>{C=c;render()});
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+[
+ {
+  "id": "ph-n",
+  "subject": "Pharmacology",
+  "type": "notes",
+  "title": "Beta-blockers in three swipes",
+  "slides": [
+   {
+    "h": "Mechanism",
+    "p": "They block beta-adrenergic receptors, so heart rate and force of contraction fall."
+   },
+   {
+    "h": "Know the names",
+    "p": "Atenolol and metoprolol are beta-1 selective. Propranolol is non-selective. Carvedilol also blocks alpha-1."
+   },
+   {
+    "h": "Cautions",
+    "p": "Avoid in asthma and severe bradycardia. Do not stop suddenly, because rebound tachycardia and hypertension can occur."
+   }
+  ]
+ },
+ {
+  "id": "ph-q",
+  "subject": "Pharmacology",
+  "type": "quiz",
+  "q": "Which of these is an ACE inhibitor?",
+  "o": [
+   "Losartan",
+   "Captopril",
+   "Amlodipine",
+   "Furosemide"
+  ],
+  "a": 1,
+  "ex": "Captopril blocks angiotensin-converting enzyme. Losartan blocks the AT1 receptor instead."
+ },
+ {
+  "id": "ph-f",
+  "subject": "Pharmacology",
+  "type": "flash",
+  "front": "Antidote for paracetamol overdose?",
+  "back": "N-acetylcysteine (NAC). It replenishes glutathione, which detoxifies the toxic metabolite."
+ },
+ {
+  "id": "ph-k",
+  "subject": "Pharmacology",
+  "type": "fact",
+  "title": "Grapefruit and statins",
+  "p": "Grapefruit juice inhibits intestinal CYP3A4, which can raise blood levels of drugs such as simvastatin."
+ },
+ {
+  "id": "pc-n",
+  "subject": "Pharmaceutics",
+  "type": "notes",
+  "title": "Bioavailability",
+  "slides": [
+   {
+    "h": "Definition",
+    "p": "The fraction of a dose that reaches the systemic circulation unchanged. An IV dose is 100%."
+   },
+   {
+    "h": "What changes it",
+    "p": "Solubility, first-pass metabolism, dosage form and food."
+   },
+   {
+    "h": "How it is measured",
+    "p": "Compare the AUC of the oral dose with the AUC of an IV dose, adjusted for the doses given."
+   }
+  ]
+ },
+ {
+  "id": "pc-q",
+  "subject": "Pharmaceutics",
+  "type": "quiz",
+  "q": "Which coating protects a drug from stomach acid?",
+  "o": [
+   "Sugar coating",
+   "Enteric coating",
+   "Plain film coating",
+   "Wax matrix"
+  ],
+  "a": 1,
+  "ex": "Enteric coatings resist gastric acid and dissolve at the higher pH of the intestine."
+ },
+ {
+  "id": "pc-f",
+  "subject": "Pharmaceutics",
+  "type": "flash",
+  "front": "What does the HLB value describe?",
+  "back": "The hydrophilic-lipophilic balance of a surfactant. About 3 to 6 suits W/O emulsifiers and about 8 to 18 suits O/W emulsifiers."
+ },
+ {
+  "id": "pc-k",
+  "subject": "Pharmaceutics",
+  "type": "fact",
+  "title": "Dissolution can limit absorption",
+  "p": "For poorly soluble drugs (BCS class II), how fast the drug dissolves is often what limits absorption."
+ },
+ {
+  "id": "pa-n",
+  "subject": "Pathology",
+  "type": "notes",
+  "title": "Inflammation basics",
+  "slides": [
+   {
+    "h": "Acute",
+    "p": "Starts with blood vessel changes and neutrophils arriving at the site."
+   },
+   {
+    "h": "Cardinal signs",
+    "p": "Redness, heat, swelling, pain and loss of function."
+   },
+   {
+    "h": "Chronic",
+    "p": "Dominated by macrophages and lymphocytes. Granulomas are a classic example, as in tuberculosis."
+   }
+  ]
+ },
+ {
+  "id": "pa-q",
+  "subject": "Pathology",
+  "type": "quiz",
+  "q": "Which cell predominates early in acute inflammation?",
+  "o": [
+   "Neutrophil",
+   "Eosinophil",
+   "Plasma cell",
+   "Fibroblast"
+  ],
+  "a": 0,
+  "ex": "Neutrophils arrive first. Macrophages and lymphocytes dominate later, in chronic inflammation."
+ },
+ {
+  "id": "pa-f",
+  "subject": "Pathology",
+  "type": "flash",
+  "front": "Necrosis vs apoptosis",
+  "back": "Necrosis is uncontrolled cell death with inflammation. Apoptosis is programmed, energy-dependent death without inflammation."
+ },
+ {
+  "id": "pa-k",
+  "subject": "Pathology",
+  "type": "fact",
+  "title": "What a granuloma is",
+  "p": "A granuloma is a cluster of activated macrophages called epithelioid cells, typical of tuberculosis."
+ },
+ {
+  "id": "cp-n",
+  "subject": "Clinical Pharmacy",
+  "type": "notes",
+  "title": "Therapeutic drug monitoring",
+  "slides": [
+   {
+    "h": "Why",
+    "p": "Some drugs have a narrow therapeutic index, so small dose changes matter."
+   },
+   {
+    "h": "Examples",
+    "p": "Digoxin, lithium, phenytoin, vancomycin and aminoglycosides."
+   },
+   {
+    "h": "Sampling",
+    "p": "Take a trough level just before the next dose, once steady state is reached."
+   }
+  ]
+ },
+ {
+  "id": "cp-q",
+  "subject": "Clinical Pharmacy",
+  "type": "quiz",
+  "q": "About how many half-lives are needed to reach steady state?",
+  "o": [
+   "1 to 2",
+   "4 to 5",
+   "10",
+   "It is immediate"
+  ],
+  "a": 1,
+  "ex": "With repeated dosing, steady state is reached after roughly 4 to 5 half-lives."
+ },
+ {
+  "id": "cp-f",
+  "subject": "Clinical Pharmacy",
+  "type": "flash",
+  "front": "How is warfarin monitored?",
+  "back": "With the INR. The target is usually 2 to 3 for most indications."
+ },
+ {
+  "id": "cp-k",
+  "subject": "Clinical Pharmacy",
+  "type": "fact",
+  "title": "Type A reactions",
+  "p": "Type A adverse drug reactions are dose-related and predictable from the drug's pharmacology."
+ },
+ {
+  "id": "mc-n",
+  "subject": "Medicinal Chemistry",
+  "type": "notes",
+  "title": "The story of aspirin",
+  "slides": [
+   {
+    "h": "Origin",
+    "p": "Willow bark gave salicin, which leads to salicylic acid."
+   },
+   {
+    "h": "Acetylation",
+    "p": "Acetylating salicylic acid gave aspirin, which is easier on the stomach."
+   },
+   {
+    "h": "Mechanism",
+    "p": "It irreversibly acetylates COX enzymes. Low doses block platelet thromboxane A2, and platelets cannot make new enzyme."
+   }
+  ]
+ },
+ {
+  "id": "mc-q",
+  "subject": "Medicinal Chemistry",
+  "type": "quiz",
+  "q": "What does a prodrug need before it works?",
+  "o": [
+   "Conversion in the body to the active form",
+   "Direct receptor binding as given",
+   "Excretion unchanged",
+   "Storage in fat"
+  ],
+  "a": 0,
+  "ex": "A prodrug is inactive until it is converted by metabolism or chemistry in the body."
+ },
+ {
+  "id": "mc-f",
+  "subject": "Medicinal Chemistry",
+  "type": "flash",
+  "front": "Lipinski's rule of five",
+  "back": "A guide to oral drug-likeness: molecular weight up to 500, logP up to 5, up to 5 H-bond donors and up to 10 acceptors."
+ },
+ {
+  "id": "mc-k",
+  "subject": "Medicinal Chemistry",
+  "type": "fact",
+  "title": "The beta-lactam ring",
+  "p": "The beta-lactam ring is the key part of penicillin. Beta-lactamase enzymes open it, which causes resistance."
+ },
+ {
+  "id": "pg-n",
+  "subject": "Pharmacognosy",
+  "type": "notes",
+  "title": "Alkaloids",
+  "slides": [
+   {
+    "h": "What they are",
+    "p": "Basic, nitrogen-containing compounds made by plants."
+   },
+   {
+    "h": "Examples",
+    "p": "Morphine from opium poppy, quinine from cinchona, atropine from belladonna, caffeine from coffee."
+   },
+   {
+    "h": "Detection",
+    "p": "Dragendorff's and Mayer's reagents give precipitates with alkaloids."
+   }
+  ]
+ },
+ {
+  "id": "pg-q",
+  "subject": "Pharmacognosy",
+  "type": "quiz",
+  "q": "Digoxin is obtained from which plant?",
+  "o": [
+   "Digitalis",
+   "Cinchona",
+   "Rauwolfia",
+   "Ephedra"
+  ],
+  "a": 0,
+  "ex": "Digoxin comes from Digitalis lanata, the foxglove. Quinine is from cinchona and reserpine from Rauwolfia."
+ },
+ {
+  "id": "pg-f",
+  "subject": "Pharmacognosy",
+  "type": "flash",
+  "front": "Source and use of quinine",
+  "back": "Cinchona bark. It is used as an antimalarial."
+ },
+ {
+  "id": "pg-k",
+  "subject": "Pharmacognosy",
+  "type": "fact",
+  "title": "An early antihypertensive",
+  "p": "Reserpine, from Rauwolfia serpentina, was one of the first drugs used to treat high blood pressure."
+ }
+]

@@ -6,4 +6,4 @@ WORKDIR /app
 COPY --chown=user requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY --chown=user . .
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-7860}"]
